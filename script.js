@@ -18,17 +18,27 @@ document.getElementById('uploadForm').addEventListener('submit', async function(
 
 function displayResult(data) {
     const resultDiv = document.getElementById('result');
+    let imagesHtml = '';
+    
+    if (data.similar_images && data.similar_images.length > 0) {
+        data.similar_images.forEach(img => {
+            imagesHtml += `
+                <div class="similar-image">
+                    <img src="${img.url}" alt="${img.label}" onerror="this.onerror=null; this.src='/static/placeholder.jpg';" style="width:200px;height:auto;">
+                    <p>${img.label}</p>
+                </div>
+            `;
+        });
+    } else {
+        imagesHtml = '<p>No similar images found</p>';
+    }
+
     resultDiv.innerHTML = `
-        <h2>Clinical Analysis Results:</h2>
+        <h2>Analysis Results:</h2>
         <pre>${data.description}</pre>
         <h3>Similar Conditions:</h3>
         <div class="similar-images">
-            ${data.similar_images.map(img => `
-                <div class="similar-image">
-                    <img src="${img.url}" alt="${img.label}" style="width:200px;height:auto;">
-                    <p>${img.label}</p>
-                </div>
-            `).join('')}
+            ${imagesHtml}
         </div>
     `;
 }
