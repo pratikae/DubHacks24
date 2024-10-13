@@ -35,3 +35,13 @@ input, select, button {
     margin: 20px auto; /* Center it horizontally */
     max-width: 100%; /* Ensure it doesn't overflow the container */
 }
+
+.similar-images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.similar-image {
+    text-align: center;
+}
