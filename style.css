@@ -1,0 +1,37 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: rgb(51, 66, 138); /* Changed background color to light blue */
+    padding: 20px;
+}
+
+.container {
+    position: relative;
+    max-width: 600px;
+    /*margin: auto; */
+    margin: 100px auto;
+    background: rgb(140, 176, 210);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+h1 {
+    text-align: center;
+}
+
+input, select, button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+}
+* {
+    box-sizing: border-box; /* Ensures padding and border are included in the width */
+    
+}
+
+#uploadedImage {
+    display: block; /* Make it a block element */
+    margin: 20px auto; /* Center it horizontally */
+    max-width: 100%; /* Ensure it doesn't overflow the container */
+}
