@@ -1,17 +1,10 @@
 document.getElementById('uploadForm').addEventListener('submit', async function(event) {
-    event.preventDefault(); // Prevent the form from submitting normally
+    event.preventDefault();
 
-    const imageInput = document.getElementById('imageInput');
-    const ageInput = document.getElementById('ageInput').value;
-    const sexInput = document.getElementById('sexInput').value;
-
-    const formData = new FormData();
-    formData.append('image', imageInput.files[0]);
-    formData.append('age', ageInput);
-    formData.append('sex', sexInput);
+    const formData = new FormData(this);
 
     try {
-        const response = await fetch('http://localhost:5000/upload', { // Adjust the URL if needed
+        const response = await fetch('/upload', {
             method: 'POST',
             body: formData
         });
@@ -25,22 +18,26 @@ document.getElementById('uploadForm').addEventListener('submit', async function(
 
 function displayResult(data) {
     const resultDiv = document.getElementById('result');
-    resultDiv.innerHTML = `<h2>Clinical Description</h2><p>${data.description}</p>`;
-    if (data.images && data.images.length > 0) {
-        resultDiv.innerHTML += `<h3>Similar Images:</h3>`;
-        data.images.forEach(image => {
-            resultDiv.innerHTML += `<img src="${image}" alt="Similar Condition" style="width:100px;height:auto;margin:5px;">`;
-        });
-    }
+    resultDiv.innerHTML = `
+        <h2>Clinical Analysis Results:</h2>
+        <pre>${data.description}</pre>
+        <h3>Similar Conditions:</h3>
+        <div class="similar-images">
+            ${data.similar_images.map(img => `
+                <div class="similar-image">
+                    <img src="${img.url}" alt="${img.label}" style="width:200px;height:auto;">
+                    <p>${img.label}</p>
+                </div>
+            `).join('')}
+        </div>
+    `;
 }
-
-// script.js
 
 document.getElementById('imageInput').addEventListener('change', function(event) {
     const file = event.target.files[0];
-    const imageUrl = URL.createObjectURL(file); // Create a URL for the uploaded image
+    const imageUrl = URL.createObjectURL(file);
     const uploadedImage = document.getElementById('uploadedImage');
     
-    uploadedImage.src = imageUrl; // Set the source of the image
-    uploadedImage.style.display = 'block'; // Show the image
+    uploadedImage.src = imageUrl;
+    uploadedImage.style.display = 'block';
 });
