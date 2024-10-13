@@ -13,8 +13,12 @@ body {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: auto;
 }
 
+h1, p {
+    max-width: 100%; /* Prevents text from overflowing */
+}
 
 h1 {
     text-align: center;
