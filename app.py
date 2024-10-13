@@ -15,7 +15,7 @@ ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 # Set the path to your Google Cloud credentials JSON file
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = '/Users/pratikaeswaran/Downloads/divine-vehicle-438505-f9-5317eb4aee49.json'
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'path/to/key.json'
 
 # Initialize the Vision client
 vision_client = vision.ImageAnnotatorClient()
